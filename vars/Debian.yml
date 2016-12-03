@@ -1,0 +1,4 @@
+---
+package_names:
+- exfat-fuse
+- exfat-utils
