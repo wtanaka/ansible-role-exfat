@@ -1,0 +1,11 @@
+---
+- name: "Check for {{local_rpm_names | join(' ')}}"
+  command: "rpm -q {{local_rpm_names | join(' ')}}"
+  changed_when: False
+  ignore_errors: True
+  register: local_rpm_exists_result
+
+- name: "Install {{local_rpm_files | join(' ')}}"
+  sudo: True
+  command: rpm -Uvh {{exfat_local_rpmfusion_rpm}}
+  when: local_rpm_exists_result|failed
