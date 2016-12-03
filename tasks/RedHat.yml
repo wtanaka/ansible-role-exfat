@@ -1,1 +1,12 @@
 ---
+- name: "Download {{local_rpm_files | join(' ')}}"
+  command: >
+    wget -O {{exfat_local_rpmfusion_rpm}}
+    download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
+  args:
+    creates: "{{exfat_local_rpmfusion_rpm}}"
+
+- include: >
+    install_local_rpms.yml
+    local_rpm_files=[exfat_local_rpmfusion_rpm]
+    local_rpm_names=['rpmfusion-free-release']
