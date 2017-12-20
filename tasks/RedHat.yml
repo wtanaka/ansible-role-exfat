@@ -5,6 +5,8 @@
     download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm
   args:
     creates: "{{exfat_local_rpmfusion_rpm}}"
+  register: result_download_rpm
+  until: result_download_rpm|success
 
 - include: >
     install_local_rpms.yml

@@ -8,4 +8,6 @@
 - name: "Install {{local_rpm_files | join(' ')}}"
   sudo: True
   command: rpm -Uvh {{exfat_local_rpmfusion_rpm}}
+  register: result_install_rpm
+  until: result_install_rpm|success
   when: local_rpm_exists_result|failed
